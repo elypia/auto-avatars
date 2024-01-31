@@ -6,6 +6,8 @@
 
 Add-on for Thunderbird that automatically populates contact photos with their Libravatar or Gravatar photo.
 
+You can install it from the [Thunderbird Add-ons](https://addons.thunderbird.net/en-US/thunderbird/addon/auto-avatars/) repository.
+
 The primary way to use this extension is to:
 
 1. Navigate to the **Address Book**
