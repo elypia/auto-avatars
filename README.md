@@ -18,7 +18,7 @@ Auto Avatars will also fetch avatars for Collected Addresses, which are the cont
 
 ### Demo
 
-![Demonstration of the add-on in action. I create a new contact in an empty address book with the email address seth@falco.fun, and then press Save. After saving, Thunderbird updates the contact that was just created to feature the avatar from Libravatar.](https://gitlab.com/Elypia/auto-avatars/-/blob/main/assets/demo.webm)
+![Demonstration of the add-on in action. I create a new contact in an empty address book with the email address seth@falco.fun, and then press Save. After saving, Thunderbird updates the contact that was just created to feature the avatar from Libravatar.](https://gitlab.com/Elypia/auto-avatars/-/raw/main/assets/demo.webm)
 
 ## Fetching Avatars
 
