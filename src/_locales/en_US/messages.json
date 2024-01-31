@@ -1,0 +1,22 @@
+{
+  "extensionName": {
+    "message": "Auto Avatars",
+    "description": "Name of the extension."
+  },
+  "extensionShortName": {
+    "message": "Avatars",
+    "description": "Short name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Add-on for Thunderbird that automatically populates contact photos with their Libravatar or Gravatar photo.",
+    "description": "Description of the extension."
+  },
+  "extensionAuthor": {
+    "message": "Seth Falco",
+    "description": "Name of the author of the extension."
+  },
+  "extensionHomePageUrl": {
+    "message": "https://gitlab.com/Elypia/auto-avatars",
+    "description": "Homepage of the extension."
+  }
+}

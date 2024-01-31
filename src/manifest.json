@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "short_name": "__MSG_extensionShortName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0.0",
+  "author": "__MSG_extensionAuthor__",
+  "default_locale": "en_US",
+  "homepage_url": "__MSG_extensionHomePageUrl__",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "auto-avatars@falco.fun",
+      "strict_min_version": "107.0"
+    }
+  },
+  "background": {
+    "page": "./background/index.html"
+  },
+  "options_ui": {
+    "page": "./options/index.html",
+    "open_in_tab": false,
+    "browser_style": false
+  },
+  "permissions": [
+    "addressBooks",
+    "storage"
+  ]
+}

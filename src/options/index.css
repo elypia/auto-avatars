@@ -1,0 +1,59 @@
+:root {
+  --fg-color: rgba(21, 20, 26, 0.69);
+  --bg-color: #fff;
+  --link-color: rgb(0, 97, 224);
+  --link-interacting-color: rgb(5, 62, 148);
+
+  color: var(--fg-color);
+  background-color: var(--bg-color);
+  font-family: Cantarell, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg-color: rgba(251, 251, 254, 0.75);
+    --bg-color: #23222b;
+    --link-color: rgb(69, 161, 255);
+    --link-interacting-color: rgb(133, 225, 255);
+  }
+}
+
+:root, html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+label {
+  margin-right: .5em;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover:active {
+  color: var(--link-interacting-color);
+}
+
+#summary {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.option {
+  margin: 0.5em 0;
+}
+
+#save-button {
+  margin-top: 1em;
+}
+
+#progress-bar {
+  margin-left: .5em;
+  display: none;
+}

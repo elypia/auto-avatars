@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <h2 id="summary">
+      Options to configure Auto Avatars:
+    </h2>
+    <form>
+      <div class="option">
+        <label for="preferred-instance">Preferred Instance:</label>
+        <input
+          id="preferred-instance"
+          type="text"
+          name="preferred-instance"
+          placeholder="https://www.libravatar.org"
+        />
+      </div>
+      <div class="option">
+        <label for="doh-server">DNS Server:</label>
+        <select id="doh-server" type="select" name="doh-server">
+          <option value="cloudflare-dns.com">Cloudflare</option>
+          <option value="dns.google">Google</option>
+          <option value="">Disabled</option>
+        </select>
+      </div>
+      <div class="option">
+        <label for="default-avatar">Default Avatar:</label>
+        <select id="default-avatar" type="select" name="default-avatar">
+          <option value="retro">Retro style (similar to GitHub)</option>
+          <option value="robohash">Roboter style</option>
+          <option value="pagan">Retro adventure character</option>
+          <option value="wavatar">Wavatar style</option>
+          <option value="monsterid">Monster style</option>
+          <option value="identicon">Identicon style</option>
+          <option value="mm">Mystery man</option>
+          <option value="mmng">Mystery man NextGen</option>
+          <option value="">Libravatar icon</option>
+          <option value="404">Disabled</option>
+        </select>
+      </div>
+      <div id="save-button">
+        <button type="submit">Save</button>
+      </div>
+    </form>
+    <h2 id="summary">
+      Bulk Actions:
+    </h2>
+    <div>
+      <button id="apply-to-all-contacts">Apply to all Contacts</button>
+      <progress id="progress-bar" value="0" max="0"></progress>
+    </div>
+    <p>
+      <a href="https://gitlab.com/Elypia/auto-avatars/-/blob/main/docs/options.md" target="_blank">
+        Learn more about each option
+      </a>
+    </p>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
