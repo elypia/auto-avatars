@@ -22,7 +22,7 @@ Auto Avatars will also fetch avatars for Collected Addresses, which are the cont
 
 ## Fetching Avatars
 
-As Libravatar is a federated, Auto Avatars can check multiple locations for an avatar. Attempts will only be made to fetch avatars from secure sources (HTTPS).
+As Libravatar is federated, Auto Avatars can check multiple locations for an avatar. Attempts will only be made to fetch avatars from secure sources (HTTPS).
 
 We fetch avatars in the following order:
 
