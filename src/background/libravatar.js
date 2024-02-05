@@ -1,6 +1,6 @@
 import { queryAvatarService } from './dns.js';
 import { buildSecureUrl, doSignaturesMatch, sha256sum } from './utils.js';
-import { DEFAULT_HOST, DEFAULT_AVATAR } from '../constants.js';
+import { DEFAULT_AVATAR } from '../constants.js';
 
 /**
  * File signatures or magic numbers to check if the file received actually looks
@@ -28,16 +28,15 @@ export const SUPPORTED_CONTENT_TYPES = new Map([
  * Get the avatar for a given contact by email address.
  *
  * First attempts to check if the email has a dedicated Libravatar instance
- * associated with it. If not, we'll use the default instance at
- * {@link DEFAULT_HOST}.
+ * associated with it. If not, we'll use the preferred instance.
  *
- * Even if the contact does use have a dedicated instance, there are times we're
+ * Even if the contact does have a dedicated instance, there are times we're
  * unable to use it for example:
  *
  * * {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin Access Control Origin Policy}
  * * An invalid or expired HTTPS certificate
  *
- * If this happens, we'll fallback to {@link DEFAULT_HOST}.
+ * If this happens, we'll fallback also fallback to the preferred host.
  *
  * If the file we get back does not start with a PNG file signature, we throw it
  * away as malformed or potentially malicious.
@@ -48,16 +47,6 @@ export const SUPPORTED_CONTENT_TYPES = new Map([
  */
 export async function getAvatar(email, size) {
   const normalized = email.trim().toLowerCase();
-  const domain = normalized.split('@')[1];
-  const dohOption = await messenger.storage.sync.get('dohServer');
-  let dnsData;
-
-  if (dohOption?.dohServer) {
-    const { data } = await queryAvatarService(domain, dohOption.dohServer);
-    dnsData = data;
-  }
-
-  const contactsInstance = (dnsData) ? buildSecureUrl(dnsData.target, dnsData.port) : DEFAULT_HOST;
   const emailHash = await sha256sum(normalized);
 
   let route = `/avatar/${emailHash}?s=${size}`;
@@ -69,21 +58,32 @@ export async function getAvatar(email, size) {
   }
 
   let resp;
+  let contactsInstance;
 
-  try {
-    resp = await fetch(contactsInstance + route, {
-      signal: AbortSignal.timeout(3000)
-    });
-  } catch (err) {}
+  const dohOption = await messenger.storage.sync.get('dohServer');
+  if (dohOption?.dohServer) {
+    const domain = normalized.split('@')[1];
+    const { data } = await queryAvatarService(domain, dohOption.dohServer);
 
-  if (!resp || !resp.ok) {
-    let instanceOption = await messenger.storage.sync.get('preferredInstance');
-    const preferredInstance = instanceOption?.preferredInstance || DEFAULT_HOST;
+    if (data) {
+      contactsInstance = buildSecureUrl(data.target, data.port);
 
-    if (preferredInstance === contactsInstance) {
-      return null;
+      try {
+        resp = await fetch(contactsInstance + route, {
+          signal: AbortSignal.timeout(3000)
+        });
+      } catch (err) {}
     }
+  }
 
+  const instanceOption = await messenger.storage.sync.get('preferredInstance');
+  const preferredInstance = instanceOption?.preferredInstance;
+
+  if (
+    !resp?.ok &&
+    preferredInstance &&
+    preferredInstance !== contactsInstance
+  ) {
     try {
       resp = await fetch(preferredInstance + route, {
         signal: AbortSignal.timeout(3000)
@@ -93,7 +93,7 @@ export async function getAvatar(email, size) {
     }
   }
 
-  if (!resp.ok) {
+  if (!resp?.ok) {
     return null;
   }
 

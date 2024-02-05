@@ -6,7 +6,7 @@
 
 Add-on for Thunderbird that automatically populates contact photos with their Libravatar or Gravatar photo.
 
-You can install it from the [Thunderbird Add-ons](https://addons.thunderbird.net/en-US/thunderbird/addon/auto-avatars/) repository.
+You can install it from the [Thunderbird Add-ons](https://addons.thunderbird.net/en-US/thunderbird/addon/auto-avatars/) repository. After installation, you must either set a preferred Libravatar instance, or confirm that you're happy with the recommended instance in the add-on preferences before the add-on will fetch avatars.
 
 The primary way to use this extension is to:
 
@@ -27,7 +27,7 @@ As Libravatar is federated, Auto Avatars can check multiple locations for an ava
 We fetch avatars in the following order:
 
 1. The contacts preferred Libravatar instance if federation is enabled. (Disabled by default!)
-2. Your preferred Libravatar server, defaults to the hosted Libravatar instance at [libravatar.org](https://www.libravatar.org).
+2. Your preferred Libravatar server, it's recommended to use the hosted Libravatar instance at [libravatar.org](https://www.libravatar.org).
 3. Fallback to Gravatar, the request is proxied through the hosted Libravatar instance.
 
 To learn more about and enable federation support, see the [add-on preferences](./docs/options.md) documentation.
