@@ -4,11 +4,11 @@ For most users, the default settings should work for you. However, if you'd like
 
 ## Preferred Instance
 
-The preferred Libravatar instance you want to connect to. This defaults to the official instances hosted at [libravatar.org](https://www.libravatar.org).
+The preferred Libravatar instance you want to connect to. It's recommended to set this to the official instance hosted at [libravatar.org](https://www.libravatar.org).
 
 When federation is disabled, or the contact does not host their own server, this is the server that is used to check for an avatar.
 
-## DNS Server
+## DNS Server for Federation
 
 Libravatar is federated, so anyone can choose where their avatar is hosted and indicate the location in their DNS records.
 

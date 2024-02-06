@@ -16,6 +16,7 @@
 
 import ICAL from './libs/ical.min.js';
 import { getAvatar } from './libravatar.js';
+import { hasUserOptedIn } from './utils.js';
 
 /**
  * @typedef {Object<string, { oldValue: ?string, newValue: ?string }>} PropertyChange
@@ -71,7 +72,8 @@ async function onContactUpdated(contactNode, _changedProperties) {
 }
 
 async function updateContact(contactNode) {
-  if (contactNode.readOnly) {
+  const canFetchAvatars = await hasUserOptedIn();
+  if (!canFetchAvatars || contactNode.readOnly) {
     return;
   }
 
@@ -94,6 +96,11 @@ async function updateContact(contactNode) {
 }
 
 async function updateAllContacts() {
+  const canFetchAvatars = await hasUserOptedIn();
+  if (!canFetchAvatars) {
+    return;
+  }
+
   const addressBooks = await messenger.addressBooks.list(true);
 
   if (!addressBooks) {
@@ -108,7 +115,7 @@ async function updateAllContacts() {
 
   for (const contact of writeableLocalContacts) {
     await updateContact(contact);
-    messenger.runtime.sendMessage(
+    await messenger.runtime.sendMessage(
       null,
       JSON.stringify({
         job: 'apply-to-all-contacts',
@@ -121,12 +128,6 @@ async function updateAllContacts() {
       null
     );
   }
-
-  messenger.runtime.sendMessage(
-    null,
-    JSON.stringify({ job: 'apply-to-all-contacts', status: 'done' }),
-    null
-  );
 }
 
 async function onMessage(message) {
@@ -137,6 +138,15 @@ async function onMessage(message) {
   }
 }
 
+function onInstalled(details) {
+  if (details.reason != 'install') {
+    return;
+  }
+
+  messenger.runtime.openOptionsPage();
+}
+
+messenger.runtime.onInstalled.addListener(onInstalled);
 messenger.contacts.onCreated.addListener(onContactCreated);
 messenger.contacts.onUpdated.addListener(onContactUpdated);
 messenger.runtime.onMessage.addListener(onMessage)

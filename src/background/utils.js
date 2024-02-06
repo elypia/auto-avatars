@@ -71,3 +71,14 @@ export async function doSignaturesMatch(blob, signatureBytes, tailBytes) {
 
   return true;
 }
+
+/**
+ * Determines if the user has explicitly configured the add-on to make outgoing
+ * requests to third-party servers.
+ *
+ * @returns If the extension has been configured to make external requests.
+ */
+export async function hasUserOptedIn() {
+  const instanceOption = await messenger.storage.sync.get('preferredInstance');
+  return !!instanceOption?.preferredInstance;
+}

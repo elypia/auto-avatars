@@ -1,12 +1,18 @@
-import { DEFAULT_HOST, DEFAULT_AVATAR } from '../constants.js';
+import { hasUserOptedIn } from '../background/utils.js';
+import { DEFAULT_AVATAR, DEFAULT_HOST } from '../constants.js';
 
 /**
  * If the "Apply to all Contacts" job is currently in progress. This is to
- * ignore the button if the user pushes it while we're already updating contacts.
+ * disable the button meanwhile.
  *
  * @type {boolean}
  */
 let isApplyToAllContactsInProgress = false;
+
+function onUseRecommendedInstanceClick() {
+  document.querySelector('#preferred-instance').value = DEFAULT_HOST;
+  saveOptions();
+}
 
 async function saveOptions(event) {
   event.preventDefault();
@@ -26,23 +32,30 @@ async function saveOptions(event) {
     dohServer: document.querySelector('#doh-server').value,
     defaultAvatar: document.querySelector('#default-avatar').value
   });
+
+  updateButtonActions();
 }
 
 async function restoreOptions() {
   let res = await messenger.storage.sync.get('preferredInstance');
-  document.querySelector('#preferred-instance').value = res.preferredInstance || DEFAULT_HOST;
+  document.querySelector('#preferred-instance').value = res.preferredInstance || '';
 
   res = await messenger.storage.sync.get('dohServer');
   document.querySelector('#doh-server').value = res.dohServer || '';
 
   res = await messenger.storage.sync.get('defaultAvatar');
   document.querySelector('#default-avatar').value = res.defaultAvatar || DEFAULT_AVATAR;
+
+  updateButtonActions();
 }
 
-function applyToAllContacts() {
+async function applyToAllContacts() {
   if (isApplyToAllContactsInProgress) {
     return;
   }
+
+  isApplyToAllContactsInProgress = true;
+  await updateButtonActions();
 
   messenger.runtime.sendMessage(
     null,
@@ -57,19 +70,31 @@ async function onMessage(message) {
   if (parsed.job === 'apply-to-all-contacts' && parsed.status === 'progress') {
     const { progress, total } = parsed.data;
     const placeholder = document.querySelector('#progress-bar');
-    isApplyToAllContactsInProgress = progress !== total;
 
-    if (isApplyToAllContactsInProgress) {
+    if (progress !== total) {
       placeholder.style.display = 'initial';
       placeholder.value = progress;
       placeholder.max = total;
     } else {
       placeholder.style.display = 'none';
+      isApplyToAllContactsInProgress = false;
+      await updateButtonActions();
     }
+  }
+}
+
+async function updateButtonActions() {
+  const actionButtons = document.querySelectorAll('.action-button');
+  const canFetchAvatars = await hasUserOptedIn();
+  const isDisabled = isApplyToAllContactsInProgress || !canFetchAvatars;
+
+  for (const actionButton of actionButtons) {
+    actionButton.disabled = isDisabled;
   }
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.querySelector('form').addEventListener('submit', saveOptions);
 document.querySelector('#apply-to-all-contacts').addEventListener('click', applyToAllContacts);
+document.querySelector('#recommended-instance').addEventListener('click', onUseRecommendedInstanceClick);
 messenger.runtime.onMessage.addListener(onMessage)
