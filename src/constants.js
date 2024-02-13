@@ -1,8 +1,7 @@
 /**
- * Default Libravatar instance to fallback to when a contact doesn't define
- * its own, or if querying for instances with DoH disabled.
+ * Recommended Libravatar instance to set if the user doesn't have a preference.
  */
-export const DEFAULT_HOST = 'https://www.libravatar.org';
+export const RECOMMENDED_HOST = 'https://www.libravatar.org';
 
 /**
  * Default avatar to use when an email is neither on Libravatar or Gravatar.

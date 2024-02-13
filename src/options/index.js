@@ -1,5 +1,5 @@
 import { hasUserOptedIn } from '../background/utils.js';
-import { DEFAULT_AVATAR, DEFAULT_HOST } from '../constants.js';
+import { DEFAULT_AVATAR, RECOMMENDED_HOST } from '../constants.js';
 
 /**
  * If the "Apply to all Contacts" job is currently in progress. This is to
@@ -10,7 +10,7 @@ import { DEFAULT_AVATAR, DEFAULT_HOST } from '../constants.js';
 let isApplyToAllContactsInProgress = false;
 
 function onUseRecommendedInstanceClick() {
-  document.querySelector('#preferred-instance').value = DEFAULT_HOST;
+  document.querySelector('#preferred-instance').value = RECOMMENDED_HOST;
   saveOptions();
 }
 

@@ -1,7 +1,7 @@
 image: node:20.10.0-alpine3.18
 
 before_script:
-  - npm i -g web-ext
+  - npm ci
 
 cache:
   policy: pull-push
@@ -9,18 +9,24 @@ cache:
     - node_modules/
 
 stages:
+  - test
   - lint
   - build
+
+test:
+  stage: test
+  script:
+    - npm run test
 
 lint:
   stage: lint
   script:
-    - web-ext lint -s src
+    - npm run lint
 
 build:
   stage: build
   script:
-    - web-ext build -s src
+    - npm run build
   artifacts:
     paths:
       - web-ext-artifacts/
