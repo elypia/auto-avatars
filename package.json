@@ -5,7 +5,7 @@
   "homepage": "https://gitlab.com/Elypia/auto-avatars",
   "author": "Seth Falco",
   "private": true,
-  "license": "Apache-2.0",
+  "license": "MIT",
   "type": "module",
   "keywords": [
     "libravatar",
