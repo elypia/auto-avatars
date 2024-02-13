@@ -24,6 +24,7 @@
   },
   "scripts": {
     "build": "rm -f web-ext-artifacts/*.zip && web-ext build -s src",
+    "lint": "web-ext lint -s src",
     "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest"
   },
   "devDependencies": {
