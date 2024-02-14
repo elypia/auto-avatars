@@ -14,6 +14,19 @@ function onUseRecommendedInstanceClick() {
   saveOptions();
 }
 
+async function restoreOptions() {
+  let res = await messenger.storage.sync.get('preferredInstance');
+  document.querySelector('#preferred-instance').value = res.preferredInstance || '';
+
+  res = await messenger.storage.sync.get('dohServer');
+  document.querySelector('#doh-server').value = res.dohServer || '';
+
+  res = await messenger.storage.sync.get('defaultAvatar');
+  document.querySelector('#default-avatar').value = res.defaultAvatar || DEFAULT_AVATAR;
+
+  updateButtonActions();
+}
+
 async function saveOptions(event) {
   event.preventDefault();
 
@@ -36,17 +49,14 @@ async function saveOptions(event) {
   updateButtonActions();
 }
 
-async function restoreOptions() {
-  let res = await messenger.storage.sync.get('preferredInstance');
-  document.querySelector('#preferred-instance').value = res.preferredInstance || '';
+async function updateButtonActions() {
+  const actionButtons = document.querySelectorAll('.action-button');
+  const canFetchAvatars = await hasUserOptedIn();
+  const isDisabled = isApplyToAllContactsInProgress || !canFetchAvatars;
 
-  res = await messenger.storage.sync.get('dohServer');
-  document.querySelector('#doh-server').value = res.dohServer || '';
-
-  res = await messenger.storage.sync.get('defaultAvatar');
-  document.querySelector('#default-avatar').value = res.defaultAvatar || DEFAULT_AVATAR;
-
-  updateButtonActions();
+  for (const actionButton of actionButtons) {
+    actionButton.disabled = isDisabled;
+  }
 }
 
 async function applyToAllContacts() {
@@ -62,6 +72,16 @@ async function applyToAllContacts() {
     JSON.stringify({ job: 'apply-to-all-contacts', status: 'started' }),
     null
   );
+}
+
+async function onLoad() {
+  const elements = document.querySelectorAll('[data-i18n]');
+
+  for (const element of elements) {
+    element.innerHTML = messenger.i18n.getMessage(element.dataset.i18n);
+  }
+
+  restoreOptions();
 }
 
 async function onMessage(message) {
@@ -83,17 +103,7 @@ async function onMessage(message) {
   }
 }
 
-async function updateButtonActions() {
-  const actionButtons = document.querySelectorAll('.action-button');
-  const canFetchAvatars = await hasUserOptedIn();
-  const isDisabled = isApplyToAllContactsInProgress || !canFetchAvatars;
-
-  for (const actionButton of actionButtons) {
-    actionButton.disabled = isDisabled;
-  }
-}
-
-document.addEventListener('DOMContentLoaded', restoreOptions);
+document.addEventListener('DOMContentLoaded', onLoad);
 document.querySelector('form').addEventListener('submit', saveOptions);
 document.querySelector('#apply-to-all-contacts').addEventListener('click', applyToAllContacts);
 document.querySelector('#recommended-instance').addEventListener('click', onUseRecommendedInstanceClick);

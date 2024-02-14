@@ -18,5 +18,101 @@
   "extensionHomePageUrl": {
     "message": "https://gitlab.com/Elypia/auto-avatars",
     "description": "Homepage of the extension."
+  },
+  "autoavatars.options.setup": {
+    "message": "The <strong>Preferred Instance</strong> option must be configured before this add-on will work. If you don't have a preference, press the <strong>Use Recommended Instance</strong> button to confirm you're happy to use the official instance hosted at <a href=\"https://www.libravatar.org\">libravatar.org</a>.",
+    "description": "Instructions for getting started with the extension."
+  },
+  "autoavatars.options.privacynotice": {
+    "message": "Whenever you create or update a contact, this add-on will make an outgoing network request to your preferred instance to check for an avatar.",
+    "description": "Privacy notice that clarifies that we will connect to an external server whenever we fetch an avatar."
+  },
+  "autoavatars.options.heading": {
+    "message": "Options to configure Auto Avatars:",
+    "description": "Heading leading up to the actual options."
+  },
+  "autoavatars.options.preferredinstance": {
+    "message": "Preferred Instance:",
+    "description": "Label for preferred instance text field, accepts a URL."
+  },
+  "autoavatars.options.userecommended": {
+    "message": "Use Recommended Instance",
+    "description": "Button to use the recommended Libravatar instance."
+  },
+  "autoavatars.options.dohserver": {
+    "message": "DNS Server for Federation:",
+    "description": "Label for DNS-over-HTTPS select field."
+  },
+  "autoavatars.options.cloudflare": {
+    "message": "Cloudflare",
+    "description": "Cloudflare, the company."
+  },
+  "autoavatars.options.google": {
+    "message": "Google",
+    "description": "Google, the company."
+  },
+  "autoavatars.options.disabled": {
+    "message": "Disabled",
+    "description": "Name of the option to disable federation or default avatars."
+  },
+  "autoavatars.options.defaultavatar": {
+    "message": "Default Avatar:",
+    "description": "Label for the default avatar select field."
+  },
+  "autoavatars.options.avatarstyle.retro": {
+    "message": "Retro style (similar to GitHub)",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.robohash": {
+    "message": "Roboter style",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.pagan": {
+    "message": "Retro adventure character",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.wavatar": {
+    "message": "Wavatar style",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.monsterid": {
+    "message": "Monster style",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.identicon": {
+    "message": "Identicon style",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.mm": {
+    "message": "Mystery man",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.mmng": {
+    "message": "Mystery man NextGen",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.libravatar": {
+    "message": "Libravatar icon",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.404": {
+    "message": "Disabled",
+    "description": "Name of the option to disable default avatars."
+  },
+  "autoavatars.options.save": {
+    "message": "Save",
+    "description": "Button to save the settings."
+  },
+  "autoavatars.options.bulkactions": {
+    "message": "Bulk Actions:",
+    "description": "Heading for the array of buttons for bulk operations."
+  },
+  "autoavatars.options.applytoallcontacts": {
+    "message": "Apply to all Contacts",
+    "description": "Name of the button to add avatars for all of the users contacts."
+  },
+  "autoavatars.options.learnmore": {
+    "message": "Learn more about each option",
+    "description": "Link to learn more about each preference, redirects to the GitLab documentation."
   }
 }
