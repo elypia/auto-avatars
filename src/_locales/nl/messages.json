@@ -1,0 +1,118 @@
+{
+  "extensionName": {
+    "message": "Auto Avatars",
+    "description": "Name of the extension."
+  },
+  "extensionShortName": {
+    "message": "Avatars",
+    "description": "Short name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Add-on voor Thunderbird die automatisch contactfoto's invult met hun Libravatar- of Gravatar-foto.",
+    "description": "Description of the extension."
+  },
+  "extensionAuthor": {
+    "message": "Seth Falco",
+    "description": "Name of the author of the extension."
+  },
+  "extensionHomePageUrl": {
+    "message": "https://gitlab.com/Elypia/auto-avatars",
+    "description": "Homepage of the extension."
+  },
+  "autoavatars.options.setup": {
+    "message": "De optie <strong>Voorkeursexemplaar</strong> moet worden geconfigureerd voordat deze add-on werkt. Als je geen voorkeur heeft, druk je op de knop <strong>Aanbevolen exemplaar gebruiken</strong> om te bevestigen dat je de officiële instantie wilt gebruiken die wordt gehost op <a href=\"https://www.libravatar.org \">libravatar.org</a>.",
+    "description": "Instructions for getting started with the extension."
+  },
+  "autoavatars.options.privacynotice": {
+    "message": "Telkens wanneer je een contactpersoon aanmaakt of bijwerkt, zal deze add-on een uitgaand netwerkverzoek naar jouw voorkeursinstantie sturen om te controleren op een avatar.",
+    "description": "Privacy notice that clarifies that we will connect to an external server whenever we fetch an avatar."
+  },
+  "autoavatars.options.heading": {
+    "message": "Opties om Auto Avatars te configureren:",
+    "description": "Heading leading up to the actual options."
+  },
+  "autoavatars.options.preferredinstance": {
+    "message": "Voorkeursexemplaar:",
+    "description": "Label for preferred instance text field, accepts a URL."
+  },
+  "autoavatars.options.userecommended": {
+    "message": "Gebruik aanbevolen exemplaar",
+    "description": "Button to use the recommended Libravatar instance."
+  },
+  "autoavatars.options.dohserver": {
+    "message": "DNS-server voor Federatie:",
+    "description": "Label for DNS-over-HTTPS select field."
+  },
+  "autoavatars.options.cloudflare": {
+    "message": "Cloudflare",
+    "description": "Cloudflare, the company."
+  },
+  "autoavatars.options.google": {
+    "message": "Google",
+    "description": "Google, the company."
+  },
+  "autoavatars.options.disabled": {
+    "message": "Uitgeschakeld",
+    "description": "Name of the option to disable federation or default avatars."
+  },
+  "autoavatars.options.defaultavatar": {
+    "message": "Standaard Avatar:",
+    "description": "Label for the default avatar select field."
+  },
+  "autoavatars.options.avatarstyle.retro": {
+    "message": "Retrostijl (vergelijkbaar met GitHub)",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.robohash": {
+    "message": "Roboter stijl",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.pagan": {
+    "message": "Retro avontuurlijk karakter",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.wavatar": {
+    "message": "Wavatar stijl",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.monsterid": {
+    "message": "Monster stijl",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.identicon": {
+    "message": "Identicon stijl",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.mm": {
+    "message": "Mysterieuze man",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.mmng": {
+    "message": "Mysterieuze man NextGen",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.libravatar": {
+    "message": "Libravatar icoon",
+    "description": "Avatar style offered by Libravatar."
+  },
+  "autoavatars.options.avatarstyle.404": {
+    "message": "Uitgeschakeld",
+    "description": "Name of the option to disable default avatars."
+  },
+  "autoavatars.options.save": {
+    "message": "Opslaan",
+    "description": "Button to save the settings."
+  },
+  "autoavatars.options.bulkactions": {
+    "message": "Bulkacties:",
+    "description": "Heading for the array of buttons for bulk operations."
+  },
+  "autoavatars.options.applytoallcontacts": {
+    "message": "Toepassen op alle contacten",
+    "description": "Name of the button to add avatars for all of the users contacts."
+  },
+  "autoavatars.options.learnmore": {
+    "message": "Meer informatie over elke optie",
+    "description": "Link to learn more about each preference, redirects to the GitLab documentation."
+  }
+}
