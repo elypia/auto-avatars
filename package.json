@@ -1,6 +1,6 @@
 {
   "name": "auto-avatars",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Add-on for Thunderbird that automatically populates contact photos with their Libravatar or Gravatar photo.",
   "homepage": "https://gitlab.com/Elypia/auto-avatars",
   "author": "Seth Falco",
