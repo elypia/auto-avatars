@@ -28,7 +28,9 @@ async function restoreOptions() {
 }
 
 async function saveOptions(event) {
-  event.preventDefault();
+  if (event) {
+    event.preventDefault();
+  }
 
   let preferredInstance = document.querySelector('#preferred-instance').value;
 
